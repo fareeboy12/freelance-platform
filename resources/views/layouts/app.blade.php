@@ -1,9 +1,33 @@
-@extends('layouts.base')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        @hasSection('title')
 
-@section('body')
-    @yield('content')
-    
-    @isset($slot)
-        {{ $slot }}
-    @endisset
-@endsection
+            <title>@yield('title')</title>
+        @else
+            <title>{{ config('app.name') }}</title>
+        @endif
+
+        <!-- Favicon -->
+		<link rel="shortcut icon" href="{{ url(asset('favicon.ico')) }}">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+
+        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+        @livewireStyles
+        
+
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+    </head>
+
+    <body class="bg-gray-100 antialiased">
+        <div class="container mx-auto">
+            {{ $slot }}
+        </div>
+        @livewireScripts
+    </body>
+</html>
