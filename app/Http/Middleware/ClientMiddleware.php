@@ -18,7 +18,7 @@ class ClientMiddleware
         if (auth()->check() && auth()->user()->user_type === 'client') {
             return $next($request);
         }
-    
-        return redirect('/'); // Redirect to a suitable URL if not a client
+
+        return redirect()->route('login');
     }
 }

@@ -28,14 +28,15 @@ use App\Livewire\Client\PostJob;
 
 
 
-Route::get('/', Dashboard::class)->name('home');
-
-Route::middleware(['freelancer'])->group(function () {
-    // Routes for freelancers
+Route::middleware(['auth', 'freelancer'])->group(function () {
+    // Routes accessible to freelancers only
+    // Route::get('/freelancer-dashboard', 'FreelancerController@index');
 });
 
-Route::middleware(['client'])->group(function () {
-    // Routes for clients
+Route::middleware(['auth', 'client'])->group(function () {
+    // Routes accessible to clients only
+    // Route::get('/client-dashboard', 'ClientController@index');
+    Route::get('/', Dashboard::class)->name('client-dashbaord');
     Route::get('/post-job', PostJob::class)->name('post-a-job');
 });
 

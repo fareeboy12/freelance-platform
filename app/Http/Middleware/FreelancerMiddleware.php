@@ -19,6 +19,6 @@ class FreelancerMiddleware
             return $next($request);
         }
 
-        return redirect('/'); // Redirect to a suitable URL if not a freelancer
+        return redirect()->route('login');
     }
 }
