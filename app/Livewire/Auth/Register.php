@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Auth;
+namespace App\Livewire\Auth;
 
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -12,7 +12,13 @@ use Livewire\Component;
 class Register extends Component
 {
     /** @var string */
-    public $name = '';
+    public $first_name = '';
+
+    /** @var string */
+    public $last_name = '';
+
+    /** @var string */
+    public $account_type = '';
 
     /** @var string */
     public $email = '';
@@ -26,14 +32,18 @@ class Register extends Component
     public function register()
     {
         $this->validate([
-            'name' => ['required'],
+            'first_name' => ['required'],
+            'last_name' => ['required'],
+            'account_type' => ['required'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'min:8', 'same:passwordConfirmation'],
         ]);
 
         $user = User::create([
             'email' => $this->email,
-            'name' => $this->name,
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'user_type' => $this->account_type,
             'password' => Hash::make($this->password),
         ]);
 
@@ -46,6 +56,6 @@ class Register extends Component
 
     public function render()
     {
-        return view('livewire.auth.register')->extends('layouts.auth');
+        return view('livewire.auth.register');
     }
 }

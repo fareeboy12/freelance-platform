@@ -18,6 +18,7 @@
 
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
         @livewireStyles
+        @livewireScripts
         
 
         <!-- CSRF Token -->
@@ -25,9 +26,12 @@
     </head>
 
     <body class="bg-gray-100 antialiased">
-        <div class="container mx-auto">
+        {{-- <@livewire('component', ['user' => $user], key($user->id)) --}}
+        @livewire('client.navbar')
+        <div class="container mx-auto py-20">
             {{ $slot }}
         </div>
-        @livewireScripts
+        <script src="https://unpkg.com/flowbite@1.5.1/dist/flowbite.js"></script>
+        
     </body>
 </html>

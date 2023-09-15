@@ -1,3 +1,4 @@
+@section('title', 'Post a new Job')
 <div>
     <div class="rounded border w-full p-4 mt-10 bg-white">
         <h2>Getting started</h2>

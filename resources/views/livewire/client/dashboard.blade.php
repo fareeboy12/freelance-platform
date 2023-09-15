@@ -1,3 +1,4 @@
+@section('title', 'Dashboard')
 <div class="flex flex-wrap gap-2 justify-between">
     <div class="rounded border w-full p-4 mt-10 bg-white">
         <h2 class="font-bold text-lg my-4">Your Postings</h2>
@@ -18,7 +19,7 @@
                 </div>            
                 <h4>No active job posts</h4>
                 <p class="mb-4">Post a job to the marketplace and let talent come to you.</p>
-                <a href="#" class="rounded-full bg-blue-300 hover:bg-blue-500 text-white py-2 px-6">Post a Job</a>
+                <a href="{{ route('post-a-job') }}" class="rounded-full bg-blue-300 hover:bg-blue-500 text-white py-2 px-6">Post a Job</a>
             </div>
 
             <div id="second" class="hidden p-4">

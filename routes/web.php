@@ -2,12 +2,12 @@
 
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Livewire\Auth\Login;
-use App\Http\Livewire\Auth\Passwords\Confirm;
-use App\Http\Livewire\Auth\Passwords\Email;
-use App\Http\Livewire\Auth\Passwords\Reset;
-use App\Http\Livewire\Auth\Register;
-use App\Http\Livewire\Auth\Verify;
+use App\Livewire\Auth\Login;
+use App\Livewire\Auth\Passwords\Confirm;
+use App\Livewire\Auth\Passwords\Email;
+use App\Livewire\Auth\Passwords\Reset;
+use App\Livewire\Auth\Register;
+use App\Livewire\Auth\Verify;
 use Illuminate\Support\Facades\Route;
 
 use App\Livewire\Client\Dashboard;
@@ -25,8 +25,21 @@ use App\Livewire\Client\PostJob;
 */
 
 // Route::view('/', 'welcome')->name('home');
-Route::get('/', Dashboard::class);
-Route::get('/post-job', PostJob::class);
+
+
+
+Route::get('/', Dashboard::class)->name('home');
+
+Route::middleware(['freelancer'])->group(function () {
+    // Routes for freelancers
+});
+
+Route::middleware(['client'])->group(function () {
+    // Routes for clients
+    Route::get('/post-job', PostJob::class)->name('post-a-job');
+});
+
+
 
 Route::middleware('guest')->group(function () {
     Route::get('login', Login::class)
